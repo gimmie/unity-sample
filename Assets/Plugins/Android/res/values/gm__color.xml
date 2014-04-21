@@ -2,8 +2,8 @@
 <resources>
     
     <color name="gm__title_text">#000000</color>
-    <color name="gm__action_bar_background">#1089b8</color>
-    <color name="gm__action_bar_text">#ffffff</color>
+    <color name="gm__action_bar_background">#ffffff</color>
+    <color name="gm__action_bar_text">#000000</color>
     <color name="gm__background">#dedede</color>
     <color name="gm__text">#000000</color>
     <color name="gm__border">#f2f0f0</color>
