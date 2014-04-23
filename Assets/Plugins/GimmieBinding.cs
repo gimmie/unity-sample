@@ -6,28 +6,28 @@ using System.Runtime.InteropServices;
 public class GimmieBinding : MonoBehaviour {
 	#if UNITY_IPHONE
 	[DllImport ("__Internal")]
-	private static extern void AnonymousLogin();
+	private static extern void NativeIOSAnonymousLogin();
 	[DllImport ("__Internal")]
 	private static extern bool NativeIOSIsAnonymous();
 	[DllImport ("__Internal")]
-	private static extern void Login(string username);
+	private static extern void NativeIOSLogin(string username);
 	[DllImport ("__Internal")]
-	private static extern void Logout();
+	private static extern void NativeIOSLogout();
 	[DllImport ("__Internal")]
-	private static extern void UpdateGimmieCountry(string country);
+	private static extern void NativeIOSUpdateGimmieCountry(string country);
 	[DllImport ("__Internal")]
-	private static extern void ShowGimmieRewards();
+	private static extern void NativeIOSShowGimmieRewards();
 	[DllImport ("__Internal")]
-	private static extern void BindGimmieNotification();
+	private static extern void NativeIOSBindGimmieNotification();
 	[DllImport ("__Internal")]
-	private static extern void TriggerEvent(string eventname);
+	private static extern void NativeIOSTriggerEvent(string eventname);
 	#endif
 
 	public static void initGimmie(){
 		#if UNITY_IPHONE
 		Debug.Log("Login to gimmie");
-		BindGimmieNotification();
-		AnonymousLogin();
+		NativeIOSBindGimmieNotification();
+		NativeIOSAnonymousLogin();
 		#endif
 		
 		#if UNITY_ANDROID
@@ -46,7 +46,7 @@ public class GimmieBinding : MonoBehaviour {
 		Debug.Log("Login to gimmie");
 
 		#if UNITY_IPHONE
-		Login(user);
+		NativeIOSLogin(user);
 		#endif
 		
 		#if UNITY_ANDROID
@@ -61,7 +61,7 @@ public class GimmieBinding : MonoBehaviour {
 
 	public static void Logout() {
 		#if UNITY_IPHONE
-		Logout();
+		NativeIOSLogout();
 		#endif
 
 		#if UNITY_ANDROID
@@ -92,7 +92,7 @@ public class GimmieBinding : MonoBehaviour {
 	
 	public static void UpdateCountry(string countryCode) {
 		#if UNITY_IPHONE
-		UpdateGimmieCountry(countryCode);
+		NativeIOSUpdateGimmieCountry(countryCode);
 		#endif
 		
 		#if UNITY_ANDROID
@@ -107,7 +107,7 @@ public class GimmieBinding : MonoBehaviour {
 	
 	public static void ShowGimmieRewardsCatalogue(){
 		#if UNITY_IPHONE
-		ShowGimmieRewards();
+		NativeIOSShowGimmieRewards();
 		#elif UNITY_ANDROID
 		AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		AndroidJavaObject activity = player.GetStatic<AndroidJavaObject>("currentActivity");
@@ -119,7 +119,7 @@ public class GimmieBinding : MonoBehaviour {
 	
 	public static void TriggerGimmieEvent(string eventName){
 		#if UNITY_IPHONE
-		TriggerEvent(eventName);
+		NativeIOSTriggerEvent(eventName);
 		#elif UNITY_ANDROID
 		AndroidJavaClass components = new AndroidJavaClass("com.gimmie.components.GimmieComponents");
 		components.CallStatic("triggerEvent", eventName);
@@ -128,9 +128,5 @@ public class GimmieBinding : MonoBehaviour {
 	
 	public void HandleNeedLogin(string message) {
 		BroadcastMessage ("GimmieNeedLogin", null, SendMessageOptions.DontRequireReceiver);
-	}
-	
-	public void Awake() {
-		GimmieBinding.initGimmie();
 	}
 }
