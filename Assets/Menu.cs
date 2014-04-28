@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		GimmieBinding.initGimmie();
 	}
 	
 	// Update is called once per frame
