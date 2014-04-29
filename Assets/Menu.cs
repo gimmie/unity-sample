@@ -17,7 +17,7 @@ public class Menu : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		GimmieBinding.initGimmie();
+		GimmieBinding.InitGimmie();
 	}
 	
 	// Update is called once per frame
@@ -25,4 +25,8 @@ public class Menu : MonoBehaviour {
 	
 	}
 	
+	void GimmieNeedLogin() {
+		// Get facebook id and use it login to Gimmie
+		GimmieBinding.Login("facebookid");
+	}
 }

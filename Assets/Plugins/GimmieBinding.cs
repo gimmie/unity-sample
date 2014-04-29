@@ -22,8 +22,8 @@ public class GimmieBinding : MonoBehaviour {
 	[DllImport ("__Internal")]
 	private static extern void NativeIOSTriggerEvent(string eventname);
 	#endif
-
-	public static void initGimmie(){
+	
+	public static void InitGimmie(){
 		#if UNITY_IPHONE
 		Debug.Log("Login to gimmie");
 		NativeIOSBindGimmieNotification();
@@ -34,6 +34,9 @@ public class GimmieBinding : MonoBehaviour {
 		AndroidJNI.AttachCurrentThread();
 		AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		AndroidJavaObject activity = player.GetStatic<AndroidJavaObject>("currentActivity");
+		
+		AndroidJavaClass gimmieComponent = new AndroidJavaClass("com.gimmie.components.GimmieComponents");
+		gimmieComponent.CallStatic("registerUnityHandler");
 		
 		AndroidJavaClass gimmie = new AndroidJavaClass("com.gimmie.Gimmie");
 		AndroidJavaObject service = gimmie.CallStatic<AndroidJavaObject>("getInstance", activity);

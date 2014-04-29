@@ -70,6 +70,10 @@
         <meta-data
             android:name="com.gimmie.api.secret"
             android:value="643494fcde93c411f655fbf086e2" />
+		<meta-data
+			android:name="com.gimmie.api.url"
+			android:value="http://api.gimmieworld.com/1/" />
+		
         <meta-data android:name="com.gimmie.notification.system.enable" android:value="false" />
         <meta-data android:name="com.gimmie.notification.toast.enable" android:value="false" />
         <meta-data android:name="com.gimmie.notification.popup.enable" android:value="true" />
