@@ -80,9 +80,7 @@ public class GimmieBinding : MonoBehaviour {
 	public static bool IsAnonymousUser() {
 		#if UNITY_IPHONE
 		return NativeIOSIsAnonymous();
-		#endif
-
-		#if UNITY_ANDROID
+		#elif UNITY_ANDROID
 		AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		AndroidJavaObject activity = player.GetStatic<AndroidJavaObject>("currentActivity");
 		
@@ -90,6 +88,8 @@ public class GimmieBinding : MonoBehaviour {
 		AndroidJavaObject service = gimmie.CallStatic<AndroidJavaObject>("getInstance", activity);
 		String user = service.Call<String> ("getUser");
 		return user.StartsWith("guest:", true, null);
+		#else
+		return false;
 		#endif
 	}
 	
