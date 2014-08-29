@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour {
 		}
 
 		if(GUI.Button(new Rect(20,230,260,150), "Trigger Event")) {
-			GimmieBinding.TriggerGimmieEvent("1000_jump");
+			GimmieBinding.TriggerGimmieEvent("do_post");
 		}
 	}
 	
